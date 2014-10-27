@@ -9,7 +9,8 @@ $config = array(
 		'DB_PWD'	=>	'',
 		'DB_PORT'	=>	'3306',
 		'DB_PREFIX'	=>	'',
-		'WEB_HOST' =>'lc.admin.dinghe.com',
+		'ADMIN_WEB_HOST' =>'lc.admin.dinghe.com',
+		'WEB_HOST' =>'lc.dinghe.com',
 		'LOAD_EXT_CONFIG' => array(
 				'ERROR_MSG' => 'config_errormsg',
 		),
@@ -19,6 +20,7 @@ $config = array(
 		'URL_CASE_INSENSITIVE' => true,
 		'TMPL_ACTION_ERROR' => 'Public:error',
 		'TMPL_ACTION_SUCCESS' => 'Public:success',
+		'CLASS_NAME'=>array('1'=>"商业保理",'2'=>"资产管理",'3'=>"财富中心"),
 );
 return $config;
 ?>
