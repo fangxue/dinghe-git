@@ -8,17 +8,18 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="favicon.ico">
-  <script src="/assets/js/jquery-1.8.2.min.js"></script>
-    <script src="/assets/js/bootstrap.min.js"></script>
-    <script src="/assets/js/artDialog.min.js"></script>
-    <script src="/assets/js/common.js"></script>
-    <script src="/assets/js/admin.js"></script>
+    <script src="/assets/js/jquery-1.9.1.min.js"></script>
+    <script src="/assets/js/jquery.validate.js"></script>
+    <script src="/assets/js/jquery-form.js"></script>
+    <script src="/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/assets/js/ueditor/ueditor.config.js"></script> 
+    <script charset="utf-8"  src="/assets/js/ueditor/ueditor.all.min.js"></script> 
+    <script charset="utf-8"  src="/assets/js/ueditor/lang/zh-cn/zh-cn.js"></script> 
     <title>鼎赫后台</title>
 
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 
     <link href="/assets/css/main.css" rel="stylesheet">
-    <link href="/assets/css/blue.css" rel="stylesheet">
   </head>
 
   <body>
@@ -53,13 +54,13 @@
               <a href="/PartnerLogo/index">合作伙伴</a>
             </li>
             <li <if condition="($current eq 'commerce')">class="active"</if>>
-              <a href="/">商业保理</a>
+              <a href="/Commerce/index">商业保理</a>
             </li>
             <li <if condition="($current eq 'property')">class="active"</if>>
-              <a href="/">资产管理</a>
+              <a href="/Property/index">资产管理</a>
             </li>
             <li <if condition="($current eq 'treasure')">class="active"</if>>
-              <a href="/">财富中心</a>
+              <a href="/Treasure/index">财富中心</a>
             </li>
             <li <if condition="($current eq 'financing')">class="active"</if>>
               <a href="/">申请融资</a>
@@ -77,10 +78,10 @@
               <a href="/">新闻动态</a>
             </li>
             <li <if condition="($current eq 'financial')">class="active"</if>>
-              <a href="/">金融课堂</a>
+              <a href="/Financial/index">金融课堂</a>
             </li>
             <li <if condition="($current eq 'download')">class="active"</if>>
-              <a href="/">下载中心</a>
+              <a href="/Download/index">下载中心</a>
             </li>
 
           </ul>

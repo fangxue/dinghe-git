@@ -9,6 +9,7 @@ $config = array(
 		'DB_PWD'	=>	'',
 		'DB_PORT'	=>	'3306',
 		'DB_PREFIX'	=>	'',
+		'ADMIN_WEB_HOST' =>'lc.admin.dinghe.com',
 		'WEB_HOST' =>'lc.dinghe.com',
 		'LOAD_EXT_CONFIG' => array(
 				'ERROR_MSG' => 'config_errormsg',

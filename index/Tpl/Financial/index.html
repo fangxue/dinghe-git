@@ -8,61 +8,19 @@
         <div class="left_but scroll_up"></div>
         <div class="scrollDiv">
             <ul>
+                <volist name='list' id="info">
                 <li>
-                	<div class="jr-con">
-                        <div class="time">21.JULY 2014</div>
-                        <div class="jr-img"><img src="/assets/images/img_02.jpg"></div>
+                    <div class="jr-con">
+                        <div class="time">{$info.create_time|date='d.F Y',###}</div>
+                        <div class="jr-img"><img src="{$info.img}"></div>
                         <div class="jr-text">
-                            <h4>鼎赫国际保理公司</h4>
-                            <p>2013年6月，公司注册资本五千万元人民币，是国内目前涉及领域最多的商业保理公司之一；是集国际、国内保理、信用风险管理平台开发，资产管理，投资咨询服务等为一体的集团公司。咨询管理等服务.</p>
+                            <h4>{$info.title}</h4>
+                            <div>{$info.content|mb_substr=0,140,'utf-8'}</div>
                            <div class="a-more"><a href="detail.html" target="_blank" >more</a></div> 
                         </div>
                     </div>
                 </li>
-                <li>
-                	<div class="jr-con">
-                        <div class="time">21.JULY 2014</div>
-                        <div class="jr-img"><img src="/assets/images/img_02.jpg"></div>
-                        <div class="jr-text">
-                            <h4>鼎赫国际保理公司</h4>
-                            <p>2013年6月，公司注册资本五千万元人民币，是国内目前涉及领域最多的商业保理公司之一；是集国际、国内保理、信用风险管理平台开发，资产管理，投资咨询服务等为一体的集团公司。咨询管理等服务.</p>
-                           <div class="a-more"><a href="detail.html" target="_blank" >more</a></div> 
-                        </div>
-                    </div>
-                </li>
-                <li>
-                	<div class="jr-con">
-                        <div class="time">21.JULY 2014</div>
-                        <div class="jr-img"><img src="/assets/images/img_02.jpg"></div>
-                        <div class="jr-text">
-                            <h4>鼎赫国际保理公司</h4>
-                            <p>2013年6月，公司注册资本五千万元人民币，是国内目前涉及领域最多的商业保理公司之一；是集国际、国内保理、信用风险管理平台开发，资产管理，投资咨询服务等为一体的集团公司。咨询管理等服务.</p>
-                           <div class="a-more"><a href="detail.html" target="_blank" >more</a></div> 
-                        </div>
-                    </div>
-                </li>
-                <li>
-                	<div class="jr-con">
-                        <div class="time">21.JULY 2014</div>
-                        <div class="jr-img"><img src="/assets/images/img_02.jpg"></div>
-                        <div class="jr-text">
-                            <h4>鼎赫国际保理公司</h4>
-                            <p>2013年6月，公司注册资本五千万元人民币，是国内目前涉及领域最多的商业保理公司之一；是集国际、国内保理、信用风险管理平台开发，资产管理，投资咨询服务等为一体的集团公司。咨询管理等服务.</p>
-                           <div class="a-more"><a href="detail.html" target="_blank" >more</a></div> 
-                        </div>
-                    </div>
-                </li>
-                <li>
-                	<div class="jr-con">
-                        <div class="time">21.JULY 2014</div>
-                        <div class="jr-img"><img src="/assets/images/img_02.jpg"></div>
-                        <div class="jr-text">
-                            <h4>鼎赫国际保理公司</h4>
-                            <p>2013年6月，公司注册资本五千万元人民币，是国内目前涉及领域最多的商业保理公司之一；是集国际、国内保理、信用风险管理平台开发，资产管理，投资咨询服务等为一体的集团公司。咨询管理等服务.</p>
-                           <div class="a-more"><a href="detail.html" target="_blank" >more</a></div> 
-                        </div>
-                    </div>
-                </li>
+                </volist>
             </ul>
         </div>
         <div class="right_but scroll_down"></div>

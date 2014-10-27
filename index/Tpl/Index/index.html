@@ -28,20 +28,16 @@
 		<div class="main"> 
 			<div class="title">合作伙伴</div>
 		</div>
-		<div class="partner_con clearfix" id="scroll">
-			<div class="left_but scroll_up"></div>
-			<div class="scrollDiv">
-				<ul>
-					<li><a href="#"><img src="/assets/images/partner_01.png"></a></li>
-					<li><a href="#"><img src="/assets/images/partner_02.png"></a></li>
-					<li><a href="#"><img src="/assets/images/partner_03.png"></a></li>
-					<li><a href="#"><img src="/assets/images/partner_04.png"></a></li>
-					<li><a href="#"><img src="/assets/images/partner_05.png"></a></li>
-					<li><a href="#"><img src="/assets/images/partner_06.png"></a></li>
-					<li><a href="#"><img src="/assets/images/partner_01.png"></a></li>
-				</ul>
-			</div>
-			<div class="right_but scroll_down"></div>
+	<div class="partner_con clearfix" id="scroll">
+		<div class="left_but scroll_up"></div>
+		<div class="scrollDiv">
+			<ul>
+				<volist name="list" id="info">
+					<li><a href="javascript:void(0);"><img src="{$info.path}" width="130px" height="79px"></a></li>
+				</volist>
+			</ul>
 		</div>
+		<div class="right_but scroll_down"></div>
+	</div>
 </div>
 <include file="Common:footer" />

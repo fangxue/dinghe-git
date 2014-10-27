@@ -98,6 +98,7 @@ class BaseAction extends Action {
 			
 		}
 		$user = $this->getParam('session','user_info');
+		$this->assign('WebHost',C("WEB_HOST"));
 		$this->assign('current',$current);
 		$this->assign('current_user',$user);
 	
@@ -111,6 +112,54 @@ class BaseAction extends Action {
 	protected function displayPage($page){
 		$show = $page->show();// 分页显示输出
 		$this->assign('page',$show);// 赋值分页输出
+	}
+
+	/**
+	*上传图片
+	*/
+	function _upload($file,$uploadurl,$url){
+		$name = explode('.', $file["name"]);
+		$fileName = md5($name[0]);
+		import('@.ORG.UploadFile');
+		//导入上传类
+		$upload = new UploadFile();
+		//设置上传文件大小
+		$upload->maxSize            = 3292200;
+		//设置上传文件类型
+		$upload->allowExts          = explode(',', 'jpg,gif,png,jpeg');
+		//设置附件上传目录
+		$upload->savePath           = '..'.$uploadurl;
+		//设置需要生成缩略图，仅对图像文件有效
+		$upload->thumb              = true;
+		// 设置引用图片类库包路径
+		$upload->imageClassPath     = '@.ORG.Image';
+		//设置需要生成缩略图的文件前缀
+		$upload->thumbPrefix        = 'm_';  //生产2张缩略图
+		//设置生成缩略图的文件后缀
+		$upload->thunbSuffix        = 'jpg';
+		//设置缩略图最大宽度
+		$upload->thumbMaxWidth      = '400,35,1000';
+		//设置缩略图最大高度
+		$upload->thumbMaxHeight     = '400,35,1000';
+		//设置上传文件规则
+		$upload->saveRule           = 'uniqid';
+		//删除原图
+		$upload->thumbRemoveOrigin  = true;
+	
+		$upload->thumbFile  = "$fileName";
+		if(!is_dir($upload->savePath)){
+			mkdir($upload->savePath,0777);
+
+		}
+		if (!$upload->upload()) {
+			//捕获上传异常
+			$this->error($upload->getErrorMsg());
+		} else {
+			$uploadList = $upload->getUploadFileInfo();		
+		
+			return $url.$fileName.".".$uploadList[0]['extension'];
+		}
+	
 	}
 
 }

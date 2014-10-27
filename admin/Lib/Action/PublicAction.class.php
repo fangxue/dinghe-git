@@ -5,7 +5,7 @@ class PublicAction extends BaseAction {
             $this->assign('title',"Email");
             $this->display();
         }else{
-            $this->redirect('User/profile');
+            $this->redirect('/PartnerLogo/index');
         }
     }
 
@@ -22,18 +22,18 @@ class PublicAction extends BaseAction {
 
     public function checkLogin() {
     	
-    	$email = $this->getParam('post','email');
-    	$email = trim($email);
+    	$name = $this->getParam('post','name');
+    	$name = trim($name);
     	$password = $this->getParam('post','password');
 
-        if(empty($email)) {
+        if(empty($name)) {
             $this->error('帐号不能为空');
         }elseif (empty($password)){
             $this->error('密码不能为空');
         }
         
         $map = array();
-        $map['email'] = $email;
+        $map['name'] = $name;
         
         $authInfo = M('User')->where($map)->find();
 
@@ -51,7 +51,7 @@ class PublicAction extends BaseAction {
             M("user")->where('id='.$authInfo['id'])->save($data);
 
           
-            $this->success('登录成功！','/User/profile');
+            $this->success('登录成功！','/PartnerLogo/index');
            
         }else {
         	$this->error('帐号或密码错误');
