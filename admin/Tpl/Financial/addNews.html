@@ -1,0 +1,45 @@
+<include file="Common:header" />
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<h1 class="page-header">金融课堂-增加文章</h1>
+	<a class="btn btn-primary" href="/Financial/index">返回列表</a>
+
+	<form class="form-horizontal" role="form"  id="myprofile" enctype="multipart/form-data"  method="POST" style="margin-top:10px">
+		<div class="form-group">
+			<label for="input-name" class="col-sm-1 control-label">标题</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="input-title" name="title" required="" value="{$list.title}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="input-name" class="col-sm-1 control-label">上传封面</label>
+			<div class="col-sm-4">
+				<input type="file" name="Filedata" class="form-control" <if condition="!$list['img']">required="required"</if>>
+			</div>
+		</div>
+		<if condition="isset($list['img'])">
+			<div class="col-xs-6" style="width:100%;margin-left:80px;" id="list" >
+				<div>
+					<img id="show_image"  required="" class="img-thumbnail" src="http://{$WebHost}{$list.img}" >
+				</div>
+			</div>
+		</if>
+		<div class="form-group">
+			<label for="input-name" class="col-sm-1 control-label">内容</label>
+			<div class="col-sm-10">
+				<script id="container" name="content" type="text/plain" style="min-height:350px;width:100%;" >{$list.content}</script>
+				<script type="text/javascript">
+					var ue = UE.getEditor('container');
+					</script>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-1 col-sm-10">
+			<td class="text">
+				<input type="hidden"name="id" value="{$list.id}"/></td>
+				<input type="submit" class="btn btn-primary" value="提交"> 
+			</div>
+		</div>
+	</form>
+</div>   
+ 
+<include file="Common:footer" />
