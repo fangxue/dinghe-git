@@ -2,9 +2,12 @@
 import("ORG.Util.Page");// 导入分页类
 
 class BaseAction extends Action {
-/*    function _initialize() {
-       
-    }*/
+    function _initialize() {
+        $user_info = $_SESSION["user_info"];
+        if($user_info){
+            $this->assign("user_info",$user_info);
+        }
+    }
     
     /**
      * 根据type的值来获取相应的数值

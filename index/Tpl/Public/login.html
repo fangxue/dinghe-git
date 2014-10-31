@@ -1,0 +1,33 @@
+<include file="Common:header" />
+    <div class="main">
+        <div class="login">
+        	<h2>登陆</h2>
+            <form id="login-form" method="POST" action="/public/checkLogin">
+                <table width="100%" class="login-tab">
+                    <colgroup>
+                        <col width="36%">
+                        <col>
+                    </colgroup>
+                    <tr> 
+                        <th>用户名：</th>
+                        <td><input type="text" class="input-box" name="userName" id="userName" data-rule="用户名: required;username2">
+                            <span class="no-tips"><i class="no-icon"></i></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>密码：</th>
+                        <td><input type="password" class="input-box" name="password" data-rule="密码: required;password;"></td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td><input type="submit" value="登陆" class="submit-button"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+    <script>
+        $('#login-form').validator();
+    </script>             
+</body>
+</html>

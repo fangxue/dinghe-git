@@ -16,9 +16,9 @@ class PartnerLogoAction extends BaseAction {
 			$logoModel = M("logo");
 			$info["path"] = $res;
 			$info["create_time"] = time();
-			$logoModel->add($info);
+			$id = $logoModel->add($info);
 
-			echo json_encode($res);die;
+			echo json_encode(array("str"=>$res,"id"=>$id));die;
 		}
 	}
 

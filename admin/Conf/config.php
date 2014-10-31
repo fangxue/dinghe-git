@@ -21,6 +21,7 @@ $config = array(
 		'TMPL_ACTION_ERROR' => 'Public:error',
 		'TMPL_ACTION_SUCCESS' => 'Public:success',
 		'CLASS_NAME'=>array('1'=>"商业保理",'2'=>"资产管理",'3'=>"财富中心"),
+		'CLASS_DINGHE'=>array('1'=>"关于鼎赫",'2'=>"企业文化",'3'=>"愿景使命","4"=>"组织架构","5"=>"招聘信息","6"=>"联系我们"),
 );
 return $config;
 ?>

@@ -4,8 +4,13 @@ class DownloadAction extends BaseAction {
 	
 	public function index(){
 		$downloadTableModel = M("downloadTable");
-		$list = $downloadTableModel->order("create_time DESC")->select();
+
+		$count = $downloadTableModel->order("create_time DESC")->count();
+		$page = new Page($count,10);
+
+		$list = $downloadTableModel->order("create_time DESC")->limit($page->firstRow.','.$page->listRows)->select();
 		$this->assign("list",$list);
+		$this->displayPage($page);
 		$this->display();
 	}
 

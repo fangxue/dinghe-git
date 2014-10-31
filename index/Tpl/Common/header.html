@@ -12,6 +12,8 @@
     <script type="text/javascript" src="/assets/js/autoslide.v1.js"></script>
     <script type="text/javascript" src ="/assets/js/gotop.js"></script>
     <script type="text/javascript" src="/assets/js/common.js"></script>
+    <script type="text/javascript" src="/assets/js/validator.v1.js"></script>
+    <script type="text/javascript" src="/assets/js/validator.config.v1.js"></script>
 </head>
 <body>
 <div class="top">
@@ -21,12 +23,21 @@
     </div>
     <div class="top-right">
             <ul>
-                <li class="a-login">
-                    <a href="#">注册</a>
-                </li>
-                <li class="a-login">
-                    <a href="#">登录</a>
-                </li>
+                <if condition="$user_info">
+                    <li class="a-login" style="color:#fff">
+                    欢迎您，{$user_info.name}
+                    </li>
+                    <li class="a-login">
+                    <a href="/public/logout">退出</a>
+                    </li>
+                <else/>
+                    <li class="a-login">
+                    <a href="/public/register">注册</a>
+                    </li>
+                    <li class="a-login">
+                    <a href="/public/login">登录</a>
+                    </li>
+                </if>
             </ul>
     </div>
 </div>

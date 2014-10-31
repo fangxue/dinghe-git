@@ -1,6 +1,6 @@
 <include file="Common:header" />
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-	<h1 class="page-header">财富中心-{$title}<if condition="$list['title']">-{$list.title}</if></h1>
+	<h1 class="page-header">财富中心-<if condition="$list['id']">编辑文章<else/>{$title}-增加文章</if></h1>
 	<a class="btn btn-primary" href="/Treasure/index">返回分类列表</a>
 	<a class="btn btn-primary" href="/Treasure/articleManage/id/{$classid}">返回文章列表</a>
 

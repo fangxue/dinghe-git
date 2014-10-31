@@ -3,8 +3,18 @@
 class TreasureAction extends BaseAction {
 	public function index(){
 		$classNameModel = M("className");
-		$list = $classNameModel->where(array("pid"=>3))->order("create_time desc")->select();
+
+		$count = $classNameModel->where(array("pid"=>3))->order("create_time desc")->count();
+		$page = new Page($count,10);
+
+		$list = $classNameModel->where(array("pid"=>3))->order("create_time desc")->limit($page->firstRow.','.$page->listRows)->select();
+		
+		$articleModel = M("article");
+		$info = $articleModel->where(array("class"=>"财富中心"))->find();
+		$this->assign("info",$info);
+		
 		$this->assign("list",$list);
+		$this->displayPage($page);
 		$this->display();
 	}
 	//管理分类
@@ -71,12 +81,17 @@ class TreasureAction extends BaseAction {
 	public function articleManage(){
 		$id =  $this->getParam("get","id");
 		$classNameModel = M("className");
-		$class = $classNameModel->where(array("id"=>$id))->getField("name");
 		$articeModel = M("article");
-		$list = $articeModel->where(array("class"=>$class))->order("create_time desc")->select();
+		$class = $classNameModel->where(array("id"=>$id))->getField("name");
+
+		$count = $articeModel->where(array("class"=>$class))->order("create_time desc")->count();
+		$page = new Page($count,10);
+		
+		$list = $articeModel->where(array("class"=>$class))->order("create_time desc")->limit($page->firstRow.','.$page->listRows)->select();
 		$this->assign("list",$list);
 		$this->assign("classid",$id);
 		$this->assign("title",$class);
+		$this->displayPage($page);
 		$this->display();
 	}
 
@@ -144,5 +159,23 @@ class TreasureAction extends BaseAction {
 		}
 	}
 
-
+	//编辑主内容
+	public function addcontent(){
+		$articleModel = M("article");
+		$data = $this->getParam('post');
+		$content = str_replace('<p><br/></p>','',stripslashes($data["content"])); 
+		
+		$info["content"] = $content;
+		$info["update_time"] = time();
+		$res = $articleModel->where(array("class"=>"财富中心"))->find();
+		if(empty($res)){
+			$info["title"] = "财富中心";
+			$info["class"] = "财富中心";
+			$info["create_time"] = time();
+			$articleModel->add($info);
+		}else{
+			$articleModel->where(array("class"=>"财富中心"))->save($info);
+		}
+		echo json_encode(array('str' =>$info["content"]));exit; 
+	}
 }

@@ -1,0 +1,36 @@
+<include file="Common:header" />
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<h1 class="page-header">新闻动态-{$title}</h1>
+	<a class="btn btn-primary" href="/News/index">返回分类列表</a>
+	<a class="btn btn-primary" href="/News/addArticle/id/{$classid}">增加文章</a>
+
+	<table class="table table-hover folder-list" style="margin-top:10px">
+		<tbody>
+			<tr>
+				<th>标题</th>
+				<th>创建时间</th>
+				<th>操作</th>
+			</tr>
+			<volist name='list' id="info">
+				<tr>   
+				<td>{$info.title|mb_substr=0,60,'utf-8'}</td>
+				<td>{$info.create_time|date='Y-m-d',###}</td>
+				<td>
+					<a class="btn btn-default btn-xs" href="/News/addArticle/id/{$classid}/articleid/{$info.id}">编辑</a>
+					<a class="btn btn-default btn-xs" href="/News/delarticle/id/{$classid}/articleid/{$info.id}">删除</a>
+
+				</td>
+				</tr>
+			</volist>
+			<tr><td colspan="6">
+			<ul class="pagination">
+			{$page}
+			</ul>
+			</td></tr>
+		</tbody>
+	</table>
+
+
+</div>   
+ 
+<include file="Common:footer" />

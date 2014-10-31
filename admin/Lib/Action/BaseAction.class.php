@@ -59,6 +59,16 @@ class BaseAction extends Action {
 	private function  _setTemplate(){
 		$current = "";
 		SWITCH(strtolower(MODULE_NAME)){
+			CASE 'public':
+				SWITCH(strtolower(ACTION_NAME)){
+					case 'user':
+						$current = "user";
+					break;
+					case 'register':
+						$current = "register";
+					break;
+				}
+			BREAK;
 			CASE 'partnerlogo':
 				$current = "partnerlogo";
 			BREAK;
@@ -71,8 +81,8 @@ class BaseAction extends Action {
 			CASE 'treasure':
 				$current = "treasure";
 			BREAK;
-			CASE 'financing':
-				$current = "financing";
+			CASE 'dinghe':
+				$current = "dinghe";
 			BREAK;
 			CASE 'program':
 				$current = "program";
@@ -156,8 +166,7 @@ class BaseAction extends Action {
 			$this->error($upload->getErrorMsg());
 		} else {
 			$uploadList = $upload->getUploadFileInfo();		
-		
-			return $url.$fileName.".".$uploadList[0]['extension'];
+			return $url."m_".$uploadList[0]['savename'];
 		}
 	
 	}

@@ -1,6 +1,7 @@
 <include file="Common:header" />
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-	<h1 class="page-header">金融课堂-增加文章</h1>
+	<h1 class="page-header">金融课堂-
+		<if condition="$list['id']">编辑文章<else/>增加文章</if></h1>
 	<a class="btn btn-primary" href="/Financial/index">返回列表</a>
 
 	<form class="form-horizontal" role="form"  id="myprofile" enctype="multipart/form-data"  method="POST" style="margin-top:10px">
@@ -17,8 +18,9 @@
 			</div>
 		</div>
 		<if condition="isset($list['img'])">
-			<div class="col-xs-6" style="width:100%;margin-left:80px;" id="list" >
-				<div>
+			<div class="form-group">
+				<label for="input-name" class="col-sm-1 control-label"></label>
+				<div class="col-sm-4">
 					<img id="show_image"  required="" class="img-thumbnail" src="http://{$WebHost}{$list.img}" >
 				</div>
 			</div>

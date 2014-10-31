@@ -44,8 +44,8 @@ var WebHost = "{$WebHost}";
 				dataType: "json",
 
 				success:function(res){
-					data = '<div class="col-sm-2" style="margin-top:8px;"><div align="center"><img src="http://'+WebHost+res+'" class="img-rounded"  width="130px" height="79px"></div><div align="center" style="margin-top: 5px;"><a href="/">删除</a></div></div>'
-					$("#image").append(data)
+					data = '<div class="col-sm-2" style="margin-top:8px;"><div align="center"><img src="http://'+WebHost+res.str+'" class="img-rounded"  width="130px" height="79px"></div><div align="center" style="margin-top: 5px;"><a href="/PartnerLogo/del/id/'+res.id+'">删除</a></div></div>'
+					$("#image").prepend(data)
 				}
 
 			});

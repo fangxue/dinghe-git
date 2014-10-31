@@ -49,6 +49,23 @@ $(function() {
         });
     }
     tabs(".case-nav", "active", ".case-tab");
-    tabs(".product-nav", "active", ".product-tab");
     tabs(".contact-nav", "active", ".contact-tab");
+	
+	$(".product-nav li").hover(function() {
+        $(this).find('.product-con').toggleClass('active').slideToggle();
+    });
+	$('.lianxi').click(function(){
+		$('.contact-nav li').last().addClass('active').siblings().removeClass('active');
+		$('.contact-con').last().show().siblings().hide();
+		})
+	
+	//$(".product-nav li").hover(function() {
+//        $(this).find('.product-con').stop().animate({
+//            
+//        }, 300);
+//    }, function() {
+//        $(this).stop().animate({
+//            bottom:"-115px"
+//        }, 300);
+//    });
 });

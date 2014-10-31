@@ -3,20 +3,24 @@
 class FinancialAction extends BaseAction {
 	
 	public function index(){
-		$articleModel = M("article");
-		$list = $articleModel->where(array("class"=>"金融课堂"))->order("create_time DESC")->select();
+		$financialModel = M("financial");
+
+		$count = $financialModel->order("create_time DESC")->count();
+		$page = new Page($count,5);
+
+		$list = $financialModel->order("create_time DESC")->limit($page->firstRow.','.$page->listRows)->select();
 		$this->assign("list",$list);
+		$this->displayPage($page);
 		$this->display();
 	}
 
 	public function addNews(){
-		$articleModel = M("article");
+		$financialModel = M("financial");
 		if($this->getParam('post')){
 			$data = $this->getParam('post');
 	
 			$info["title"] = trim($data["title"]);
 			$info["content"] = stripslashes($data['content']);;
-			$info["class"] = '金融课堂';
 			
 			$info["update_time"] = time();
 
@@ -28,12 +32,12 @@ class FinancialAction extends BaseAction {
 			
 			if($data["id"] == ''){
 				$info["create_time"] = time();
-				$result = $articleModel->add($info);
+				$result = $financialModel->add($info);
 				if(is_numeric($result)){
 					$this->success('添加成功','/Financial/index');
 				}
 			}else{
-				$result = $articleModel->where(array("id"=>$data['id']))->save($info);
+				$result = $financialModel->where(array("id"=>$data['id']))->save($info);
 				if(is_numeric($result)){
 					$this->success('修改成功','/Financial/index');
 				}
@@ -41,7 +45,7 @@ class FinancialAction extends BaseAction {
 			
 		}else{
 			$id = $this->getParam('get','id');
-			$list = $articleModel->where(array("id"=>$id))->find();
+			$list = $financialModel->where(array("id"=>$id))->find();
 			$this->assign("list",$list);
 			$this->assign("id",$id);
 			$this->display();
@@ -54,12 +58,12 @@ class FinancialAction extends BaseAction {
 		if(empty($id)){
 			$this->error("参数错误");
 		}
-		$articleModel = M("article");
-		$info = $articleModel->where(array("id"=>$id))->find();
+		$financialModel = M("financial");
+		$info = $financialModel->where(array("id"=>$id))->find();
 		if(empty($info)){
 			$this->error("此条记录不存在，或已被删除","/Financial/index");
 		}
-		$res = $articleModel->where(array("id"=>$id))->delete();
+		$res = $financialModel->where(array("id"=>$id))->delete();
 		if(is_numeric($res)){
 			$this->success("成功删除");
 		}

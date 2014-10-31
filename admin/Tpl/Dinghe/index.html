@@ -1,0 +1,103 @@
+<include file="Common:header" />
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<h1 class="page-header">走进鼎赫</h1>
+	<form id="image_form" method="post" enctype="multipart/form-data">
+	      		<input type="button" class="btn btn-primary" value="上传封面" id="upload_image">
+	      		<input type="file" name="Filedata" id="Filedata" value="" class="file" style="display:none;">
+	</form>
+	<div id="image">
+	<volist name="list" id="info">
+			<div class="col-sm-3" style="margin-top:8px;">
+				<div align="center">
+					<img src="http://{$WebHost}{$info.path}" class="img-rounded" width="300px">
+				</div>
+				<div align="center" style="margin-top: 5px;"><a href="/Dinghe/del/id/{$info.id}">删除</a></div>
+			</div>
+
+	</volist>
+	</div>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th colspan="2"> <h3>管理相关内容</h3></th>
+			</tr>
+			<tr>
+				<th>名称</th>
+				<th>操作</th>
+			</tr>
+			<tr>
+				<td>关于鼎赫</td>
+				<td>
+					<a class="btn btn-default btn-xs" href="/Dinghe/add/id/1">编辑</a>
+				</td>
+			</tr>
+			<tr>
+				<td>企业文化</td>
+				<td>
+					<a class="btn btn-default btn-xs" href="/Dinghe/add/id/2">编辑</a>
+				</td>
+			</tr>
+			<tr>
+				<td>愿景使命</td>
+				<td>
+					<a class="btn btn-default btn-xs" href="/Dinghe/add/id/3">编辑</a>
+				</td>
+			</tr>
+			<tr>
+				<td>组织架构</td>
+				<td>
+					<a class="btn btn-default btn-xs" href="/Dinghe/add/id/4">编辑</a>
+				</td>
+			</tr>
+			<tr>
+				<td>招聘信息</td>
+				<td>
+					<a class="btn btn-default btn-xs" href="/Dinghe/add/id/5">编辑</a>
+				</td>
+			</tr>
+			<tr>
+				<td>联系我们</td>
+				<td>
+					<a class="btn btn-default btn-xs" href="/Dinghe/add/id/6">编辑</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>   
+<include file="Common:footer" />
+<script type="text/javascript">
+var WebHost = "{$WebHost}";
+ $(function(){
+	$("#Filedata").change(function(){
+		$("#image_form").submit();
+	});
+
+	$("#upload_image").click(function(){
+
+		$("#Filedata").click();
+
+	});
+
+	$("#image_form").validate({
+
+		submitHandler: function(form)  {
+			$("#image_form").ajaxSubmit({
+
+				type:'POST',
+
+				url:"/Dinghe/uploadImage",
+
+				dataType: "json",
+
+				success:function(res){
+					data = '<div class="col-sm-3" style="margin-top:8px;"><div align="center"><img src="http://'+WebHost+res.str+'" class="img-rounded" width="300px"></div><div align="center" style="margin-top: 5px;"><a href="/Dinghe/del/id/'+res.id+'">删除</a></div></div>'
+					$("#image").prepend(data)
+				}
+
+			});
+			return false;
+		}
+	});
+});
+</script>

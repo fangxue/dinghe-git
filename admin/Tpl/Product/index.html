@@ -1,0 +1,96 @@
+<include file="Common:header" />
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<h1 class="page-header">产品中心</h1>
+	<table class="table table-hover folder-list">
+		<tbody>
+			<tr>
+				<th style="width:15%">名称</th>
+				<th style="width:30%;text-align:center">简介</th>
+				<th style="width:35%">操作</th>
+			</tr>
+			<tr>
+				<td>热销理财</td>
+				<td id="td1" style="text-align:center">{$list[1]}</td>
+				<td id="td_1">
+					<a class="btn btn-default btn-xs" href="javascript:void(0);" data-id="1" id="editor">编辑</a>
+				</td>
+			</tr>
+			<tr>
+				<td>限时抢购</td>
+				<td id="td2" style="text-align:center">{$list[2]}</td>
+				<td id="td_2">
+					<a class="btn btn-default btn-xs" href="javascript:void(0);" data-id="2" id="editor">编辑</a>
+				</td>
+			</tr>
+			<tr>
+				<td>固定收益</td>
+				<td id="td3" style="text-align:center">{$list[3]}</td>
+				<td id="td_3">
+					<a class="btn btn-default btn-xs" href="javascript:void(0);" data-id="3" id="editor">编辑</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<table class="table table-hover folder-list" style="margin-top:10px">
+		<tbody>
+			<tr>
+				<th style="width:15%">图标</th>
+				<th style="width:30%;text-align:center">链接</th>
+				<th style="width:35%">操作</th>
+			</tr>
+			<tr>
+				<td><img src="http://{$WebHost}/assets/images/page4_02.png" width="80px"></td>
+				<td id="td4" style="text-align:center">{$list[4]}</td>
+				<td id="td_4">
+					<a class="btn btn-default btn-xs" href="javascript:void(0);" data-id="4" id="editor">编辑</a>
+				</td>
+			</tr>
+			<tr>
+				<td><img src="http://{$WebHost}/assets/images/page4_03.png" width="80px"></td>
+				<td id="td5" style="text-align:center">{$list[5]}</td>
+				<td id="td_5">
+					<a class="btn btn-default btn-xs" href="javascript:void(0);" data-id="5" id="editor">编辑</a>
+				</td>
+			</tr>
+			<tr>
+				<td><img src="http://{$WebHost}/assets/images/page4_04.png" width="80px"></td>
+				<td id="td6" style="text-align:center">{$list[6]}</td>
+				<td id="td_6">
+					<a class="btn btn-default btn-xs" href="javascript:void(0);" data-id="6" id="editor">编辑</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>   
+<include file="Common:footer" />
+<script type="text/javascript">
+$(function(){
+	$(".table").on("click" , "#editor" , function(){
+		var id = $(this).data("id");
+		var content = $("#td"+id).html();
+		var data = "<input type='text' class='form-control' id='content_"+id+"' name='content_"+id+"' required value='"+content+"'>";
+		var data2 = "<a class='btn btn-default btn-xs' href='javascript:void(0);' data-id='"+id+"' id='sure'>确定</a>";
+		$("#td"+id).html(data)
+		$("#td_"+id).html(data2)
+
+
+	})
+
+	$(".table").on("click" , "#sure" , function(){
+		var id = $(this).data("id");
+		var data2 = "<a class='btn btn-default btn-xs' href='javascript:void(0);' data-id='"+id+"' id='editor'>编辑</a>";
+		var content = $("#content_"+id).val();
+		$.ajax({
+				type: 'post',
+				url: '/Product/add',
+				data: {'id': id,'content':content},
+				dataType: 'json',
+				success: function(msg) {
+					$("#td"+id).html(msg.str)
+					$("#td_"+id).html(data2)
+				}
+		});
+
+	})
+});
+</script>
