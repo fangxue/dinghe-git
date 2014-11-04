@@ -26,10 +26,10 @@ class DownloadAction extends BaseAction {
 				$torrent = explode(".", $file["name"]);
 				$fileend = end($torrent);
 				$fileend = strtolower($fileend);
-				if($fileend !== 'xls'){
-					$this->error("文件后缀名必须是xls格式");
-					exit;
-				}
+				// if($fileend !== 'xls'){
+				// 	$this->error("文件后缀名必须是xls格式");
+				// 	exit;
+				// }
 
 				$tmp_name=$file["tmp_name"];
 
