@@ -1,0 +1,19 @@
+<include file="Common:header" />
+<div class="page clearfix">
+	<include file="Common:ullist" />
+    	<div class="jrkt">
+        	<h2><img src="/public/index/images/page7_01.png"></h2>
+        </div>
+        <div class="main">
+			<dl class="fengkong">
+            	<dt><img src="/public/index/images/page7_02.png"></dt>
+                <dd>
+                    <div>{$list.content|mb_substr=0,200,'utf-8'}<?php if(mb_strlen($list['content'],'utf-8')> 200) echo '. . . ';?></div>
+                    <div class="a-more tr"><a href="/fengkong/detail/id/{$list.id}" target="_blank" >more</a></div>
+                    <p></p>
+                	<img src="/public/Uploads{$list.img}">
+                </dd>
+            </dl>        
+        </div>
+    </div>
+<include file="Common:footer" />

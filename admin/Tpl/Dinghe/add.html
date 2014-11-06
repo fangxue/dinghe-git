@@ -1,0 +1,35 @@
+<include file="Common:header" />
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<h1 class="page-header">走进鼎赫-{$title}</h1>
+	<a class="btn btn-primary" href="/admin.php/Dinghe/index">返回分类列表</a>
+
+	<form class="form-horizontal" role="form"  id="myprofile" enctype="multipart/form-data"  method="POST" style="margin-top:10px">
+		<div class="form-group">
+			<label for="input-name" class="col-sm-2 control-label">名称 </label>
+			<div class="col-sm-8">
+				<input type="text" class="form-control" id="input-title" name="title" required="" value="{$list.title}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="input-name" class="col-sm-2 control-label">主內容</label>
+			<div class="col-sm-8">
+				<script id="containers" name="content" type="text/plain" style="min-height:200px;width:100%;">{$list.content}</script>
+				<script type="text/javascript">
+					var ue = UE.getEditor('containers');
+					</script>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+			<td class="text">
+				<input type="hidden" name="id" value="{$list.id}"/></td>
+				<input type="hidden" name="classid" value="{$id}"/></td>
+				<input type="submit" class="btn btn-primary" value="提交"> 
+			</div>
+		</div>
+	</form>
+
+
+</div>   
+ 
+<include file="Common:footer" />

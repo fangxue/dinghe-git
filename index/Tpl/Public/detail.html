@@ -1,0 +1,14 @@
+<include file="Common:header" />
+<include file="Common:ullist" />   
+<div class="detail main">
+	<div class="d-left">{$title}</div>
+    <div class="d-right">
+    	<div class="new-title">
+        	<span>{$list.create_time|date='d.F Y',###}</span>{$list.title}
+      </div>
+        <div class="detail-con">
+          {$list.content}
+        </div>
+    </div>
+</div>          
+<include file="Common:footer" />

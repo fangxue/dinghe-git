@@ -1,0 +1,36 @@
+<include file="Common:header" />
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+	<h1 class="page-header">解決方案-{$title}<if condition="$list['title']">-{$list.title}</if></h1>
+	<a class="btn btn-primary" href="/admin.php/Program/index">返回分类列表</a>
+	<a class="btn btn-primary" href="/admin.php/Program/articleManage/id/{$classid}">返回文章列表</a>
+
+	<form class="form-horizontal" role="form"  id="myprofile"  method="POST" style="margin-top:10px">
+		<div class="form-group">
+			<label for="input-name" class="col-sm-1 control-label">标题</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="input-title" name="title" required="" value="{$list.title}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="input-name" class="col-sm-1 control-label">内容</label>
+			<div class="col-sm-10">
+				<script id="container" name="content" type="text/plain" style="min-height:350px;width:100%;">{$list.content}</script>
+				<script type="text/javascript">
+					var ue = UE.getEditor('container');
+					</script>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-1 col-sm-10">
+			<td class="text">
+				<input type="hidden"name="id" value="{$list.id}"/></td>
+				<input type="hidden"name="classid" value="{$classid}"/></td>
+				<input type="submit" class="btn btn-primary" value="提交"> 
+			</div>
+		</div>
+	</form>
+
+
+</div>   
+ 
+<include file="Common:footer" />

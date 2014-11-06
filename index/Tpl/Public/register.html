@@ -1,0 +1,50 @@
+<include file="Common:header" />
+    <div class="main">
+        <div class="login">
+        	<h2>注册</h2>
+            <form id="reister-form" method="POST" action="/public/register">
+            	<table width="100%" class="login-tab">
+            	<colgroup>
+                	<col width="36%">
+                    <col>
+                </colgroup>
+            	<tr> 
+                	<th>用户名：</th>
+                    <td><input type="text" class="input-box" name="userName" data-rule="用户名: required;username2">
+                    </td>
+                </tr>
+                <tr>
+                	<th>密码：</th>
+                    <td><input type="password" class="input-box" name="password" data-rule="密码: required;password;" >
+                    </td>
+                </tr>
+                <tr>
+                	<th>确认密码：</th>
+                    <td><input type="password" class="input-box" name="confirm_password" data-rule="确认密码: required;match(password);" ></td>
+                </tr>
+                <tr>
+                	<th>电子邮箱：</th>
+                    <td><input type="text" class="input-box" name="email" data-rule="邮箱: required;email;"></td>
+                </tr>
+                <tr>
+                	<th>验证码：</th>
+                    <td><input type="text" class="input-box" data-rule="验证码: required"> 
+                    <img src="/public/getVerify" onClick="changeVerify()" title="点击刷新验证码" id="verifyimg"/></td>
+                </tr>
+                <tr>
+                	<th></th>
+                    <td><input type="submit" value="注册" class="submit-button"></td>
+                </tr>
+            </table>
+            </form>
+        </div>
+    </div>
+   	<script>
+        $('#reister-form').validator();
+        var verifyimgObj = document.getElementById("verifyimg");
+        function changeVerify(){
+            verifyimgObj.src='/public/getVerify';
+        }
+    </script>          
+</body>
+</html>

@@ -1,0 +1,36 @@
+<include file="Common:header" />
+<div class="page clearfix">
+	<include file="Common:ullist" />
+    	<ul class="case-nav">
+            <volist name='list' id="info">
+        	   <li>{$info.name}</li>
+            </volist>
+        </ul>
+        <div class="case-tab">
+            <volist name='list' id="info">
+            <div class="case-con">
+                <div class="page-banner-three">
+                    <div class="main">
+                        <div class="three-left">
+                            <img src="/public/Uploads{$info.img}">
+                        </div>
+                        <div class="three-right">
+                            <h2>{$info.name}</h2>
+                            <div>{$info.content}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="main">
+                    <div class="jjian-left">
+                        <h2>行业借鉴</h2>
+                        <div>{$info.reference}</div>
+                    </div>
+                    <div class="jjian-right">
+                        <div class="jj-con">了解更多物流融资案例</div>
+                        <a href="/program/lists/id/{$info.id}" target="_blank">进入</a>
+                    </div>
+                </div>
+            </div>
+            </volist>
+    </div>
+<include file="Common:footer" />

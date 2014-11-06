@@ -1,0 +1,82 @@
+<include file="Common:header" />
+<div class="page clearfix">
+	<include file="Common:ullist" />
+	<div id="focus">
+      <div class="slideDiv">
+        <ul class="bigImg" >
+            <volist name="list" id="info">
+                <li><a href="#"><img  src="/public/Uploads{$info.path}"></a></li>
+            </volist>
+        </ul>
+        <ul class="imgNum">
+          <li class=""><a href="#">1</a></li>
+          <li class=""><a href="#">2</a></li>
+          <li ><a href="#">3</a></li>
+          <li class=""><a href="#">4</a></li>
+        </ul>
+      </div>
+    </div>
+    <ul class="contact-nav">
+    	<li>关于鼎赫</li>
+        <li>企业文化</li>
+        <li>愿景使命</li>
+        <li>组织架构</li>
+        <li>招聘信息</li>
+        <li>联系我们</li>
+    </ul>
+    <div class="contact-tab clearfix">
+    	<div class="contact-con clearfix">
+        	<div class="about-top">
+            	<div class="about-bottom">
+                	<div class="about-title">{$res[1].title}</div>
+                    <div class="about-con">{$res[1].content}</div>
+                </div>
+            </div>
+        </div>
+        <div class="contact-con clearfix">
+        	<div class="about-top">
+            	<div class="about-bottom">
+                	<div class="about-title">{$res[2].title}</div>
+                    <div class="about-con">{$res[2].content}</div> 
+                </div>
+            </div>
+        </div>
+        <div class="contact-con clearfix">
+        	<div class="about-top">
+            	<div class="about-bottom">
+                	<div class="about-title">{$res[3].title}</div>
+                    <div class="about-con">{$res[3].content}</div>
+                </div>
+            </div>
+        </div>
+        <div class="contact-con clearfix">
+        	<div class="about-top">
+            	<div class="about-bottom">
+                	<div class="about-title">{$res[4].title}</div>
+                    <div class="about-con">{$res[4].content}</div>
+                </div>
+            </div>
+        </div>
+        <div class="contact-con clearfix">
+        	<div class="about-top">
+            	<div class="about-bottom">
+                	<div class="about-title">{$res[5].title}</div>
+                    <div class="about-con">
+                    	<div class="lanxi job">{$res[5].content}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="contact-con clearfix">
+        	<div class="about-top">
+            	<div class="about-bottom">
+                	<div class="about-title">{$res[6].title}</div>
+                    <div class="about-con">
+                    	<div class="lanxi">{$res[6].content}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<include file="Common:footer" />

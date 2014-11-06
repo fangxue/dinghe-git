@@ -1,0 +1,29 @@
+<include file="Common:header" />
+<div class="page4">
+	<include file="Common:ullist" />
+	<div class="jrkt">
+    	<h2><a href="/news/lists"><img src="/public/index/images/page8_01.png"></a></h2>
+    </div>
+    <div class="news">
+        <volist name="list" id="info">
+    	<div class="news-list">
+            <div class="news-con">
+            	<div class="time">{$info.create_time|date='d.F Y',###}</div>
+                <dl class="clearfix">
+                    <dt>
+                        <a href="#"><img src="/public/Uploads{$info.img}"></a>
+                    </dt>
+                    <dd>
+                    	<h2><a href="#">{$info.title}</a></h2>
+                        <div>{$info.content|mb_substr=0,200,'utf-8'}
+                            <?php if(mb_strlen($info['content'],'utf-8')> 200) echo '...';?>
+                            </div>
+                        <div class="a-more"><a href="/news/detail/id/{$info.id}" target="_blank" >more</a></div>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        </volist>
+    </div>
+</div>
+<include file="Common:footer" />
