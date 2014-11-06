@@ -8,7 +8,7 @@ class BaseAction extends Action {
 	
     function _initialize() {
         if ( 'public' != strtolower(MODULE_NAME)) {
-            $user_id = $this->getParam('session','user_id');     	
+            $user_id = $this->getParam('session','admin_user_id');     	
         	if(!$user_id) {
         		redirect('/admin.php/Public/login');
         	}
@@ -17,7 +17,7 @@ class BaseAction extends Action {
         $this->_setTemplate();
     }
     private function _checkUserPri(){
-    	$user = $this->getParam('session','user_info');
+    	$user = $this->getParam('session','admin_user_info');
     	if($user['is_admin']!=1 && 'admin' == strtolower(MODULE_NAME)){
     		$this->error('您没有权限查看此页面');
     	}
@@ -107,7 +107,7 @@ class BaseAction extends Action {
 			BREAK;
 			
 		}
-		$user = $this->getParam('session','user_info');
+		$user = $this->getParam('session','admin_user_info');
 		$this->assign('WebHost',C("WEB_HOST"));
 		$this->assign('current',$current);
 		$this->assign('current_user',$user);

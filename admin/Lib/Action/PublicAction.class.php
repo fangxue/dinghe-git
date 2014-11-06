@@ -1,7 +1,7 @@
 <?php
 class PublicAction extends BaseAction {
     public function login() {
-        if(!$this->getParam('session','user_id')) {
+        if(!$this->getParam('session','admin_user_id')) {
             $this->assign('title',"Email");
             $this->display();
         }else{
@@ -10,9 +10,9 @@ class PublicAction extends BaseAction {
     }
 
     public function logout() {
-        if($this->getParam('session','user_id')){
-            session('user_id',null); // 删除user_id
-            session('user_info',null); // 删除user_info
+        if($this->getParam('session','admin_user_id')){
+            session('admin_user_id',null); // 删除admin_user_id
+            session('admin_user_info',null); // 删除admin_user_info
 
             $this->redirect('/admin.php/Public/login');
         }else {
@@ -43,8 +43,8 @@ class PublicAction extends BaseAction {
                 $this->error('帐号或密码错误','/admin.php/Public/login');
             }
             
-            session('user_id',$authInfo['id']);  //设置session
-            session('user_info',$authInfo);  //设置session
+            session('admin_user_id',$authInfo['id']);  //设置session
+            session('admin_user_info',$authInfo);  //设置session
 
             $data["last_date"] = time();
             $data["update_time"] = time();
