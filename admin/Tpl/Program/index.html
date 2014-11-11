@@ -7,15 +7,23 @@
 		<tbody>
 			<tr>
 				<th>分类名称</th>
+				<th>排序</th>
+				<th>模式</th>
 				<th>操作</th>
 			</tr>
 			<volist name='list' id="info">
 				<tr>   
 				<td>{$info.name}</td>
+				<td>{$info.sort}</td>
+				<td><if condition="$info['is_list'] eq 1">列表式<else/>阅读式</if></td>
 				<td>
 					<a class="btn btn-default btn-xs" href="/admin.php/Program/addClass/id/{$info.id}">编辑</a>
 					<a class="btn btn-default btn-xs" href="/admin.php/Program/del/id/{$info.id}">删除</a>
-					<a class="btn btn-default btn-xs" href="/admin.php/Program/articleManage/id/{$info.id}">管理分类</a>
+					<if condition="$info['is_list'] eq 1">
+						<a class="btn btn-default btn-xs" href="/admin.php/Program/articleManage/id/{$info.id}">管理文章</a>
+					<else/>
+						<a class="btn btn-default btn-xs" href="/admin.php/Program/readContent/id/{$info.id}">管理内容</a>
+					</if>
 				</td>
 
 				</tr>

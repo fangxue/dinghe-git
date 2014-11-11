@@ -11,6 +11,27 @@
 			</div>
 		</div>
 		<div class="form-group">
+			<label for="input-name" class="col-sm-2 control-label">排序 </label>
+			<div class="col-sm-4">
+				<input type="number" class="form-control" id="input-sort" name="sort" required="" value="{$list.sort}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="input-name" class="col-sm-2 control-label"></label>
+			<div class="col-sm-4" style="color:red">
+				请填写数字，数字越大排序就越靠前
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="input-name" class="col-sm-2 control-label">是否为列表模式</label>
+			<div class="col-sm-4" style="color:red">
+				<select id="is_list" name="is_list"  class="form-control">
+					<option value="1" <if condition="$list.is_list eq 1">selected</if>>是</option>
+					<option value="0" <if condition="$list.is_list eq 0">selected</if>>否</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 			<td class="text">
 				<input type="hidden"name="id" value="{$list.id}"/></td>

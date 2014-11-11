@@ -1,7 +1,8 @@
 #################
 ## Eclipse
 #################
-
+/admin/Runtime/
+/index/Runtime/
 *.pydevproject
 .project
 .metadata

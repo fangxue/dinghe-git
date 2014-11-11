@@ -1,22 +1,68 @@
-<include file="Common:header" />
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>{$title}</title>
+    <link rel="stylesheet" type="text/css" href="/public/index/css/common.css">
+    <script type="text/javascript" src="/public/index/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="/public/index/js/html5shiv.js"></script>
+    <script type="text/javascript" src="/public/index/js/scrollview.v1.js"></script>
+    <script type="text/javascript" src="/public/index/js/autoslide.v1.js"></script>
+    <script type="text/javascript" src="/public/index/js/gotop.js"></script>
+    <script type="text/javascript" src="/public/index/js/common.js"></script>
+    <script type="text/javascript" src="/public/index/js/validator.v1.js"></script>
+    <script type="text/javascript" src="/public/index/js/validator.config.v1.js"></script>
+</head>
+<body>
+<!--首页 start-->
+<div class="top"  id="page1">
+	<div class="main clearfix">
+    <div class="logo">
+        <a href="/"><img src="/public/index/images/logo.png"></a>
+    </div>
+    <div class="top-right">
+            <ul>
+                <if condition="$user_info">
+                    <li class="a-login" style="color:#fff">
+                    欢迎您，{$user_info.name}
+                    </li>
+                    <li class="a-login">
+                    <a href="/public/logout">退出</a>
+                    </li>
+                <else/>
+                    <li class="a-login">
+                    <a href="/public/register">注册</a>
+                    </li>
+                    <li class="a-login">
+                    <a href="/public/login">登录</a>
+                    </li>
+                </if>
+            </ul>
+    </div>
+</div>
+</div>
 <div class="page">
 		<div class="page-banner-one">
-		<include file="Common:ullist" />
+
+		<include file="Common:shouye_ullist" />
+
 			<div class="main clearfix">
 				<div class="one-bottom">
 					<div class="shangb one">
 						<h2>商业保理</h2>
-						<div>{$commerce}</div>
+						<div>{$shouye_commerce}</div>
 						<a href="/commerce/index" target="_blank">进入</a>
 					</div>
 					<div class="shangb two" >
 						<h2>资产管理</h2>
-						<div>{$property}</div>
+						<div>{$shouye_property}</div>
 						<a href="/property/index" target="_blank">进入</a>
 					</div> 
 					<div class="shangb three">
 						<h2>财富中心</h2>
-						<div>{$treasure}</div>
+						<div>{$shouye_treasure}</div>
 						<a href="/treasure/index" target="_blank">进入</a>
 					</div>
 				</div>
@@ -29,7 +75,7 @@
 		<div class="left_but scroll_up"></div>
 		<div class="scrollDiv">
 			<ul>
-				<volist name="list" id="info">
+				<volist name="shouye_list" id="info">
 					<li><a href="javascript:void(0);"><img src="/public/Uploads{$info.path}" width="130px" height="79px"></a></li>
 				</volist>
 			</ul>
@@ -37,4 +83,324 @@
 		<div class="right_but scroll_down"></div>
 	</div>
 </div>
-<include file="Common:footer" />
+<!--首页 end-->
+
+<!--申请融资 start-->
+<div class="top" id="page2">
+        <include file="Common:top" />
+    </div>
+    
+    <div class="page">
+    	<div class="page-banner-two">
+     	<include file="Common:shouye_ullist" />
+        	<div class="main">
+            	<div class="two-left">
+                	<img src="/public/index/images/two_01.png">
+                    <a href="upgrade.html" target="_blank">在线申请</a>
+                    <a href="#contact-nav" class="lianxi">联系我们</a>
+                </div>
+                <div class="two-right"><img src="/public/index/images/two_02.jpg"></div>
+                <div class="two-bottom">
+                	<ul>
+                    	<li>多种融资渠道供您选择</li>
+                        <li>专业团队为您设计个性化最佳解决方案</li>
+                        <li>整合多种资源，为您实现成本最优</li>
+                        <li>一站式服务，快捷轻松</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--申请融资 end-->
+
+<!--解决方案 start-->
+    <div class="top" id="page3">
+        <include file="Common:top" />
+    </div>
+    <div class="page clearfix">
+    	<include file="Common:shouye_ullist" />
+    	<ul class="case-nav">
+            <volist name='program_list' id="info">
+        	   <li>{$info.name}</li>
+            </volist>
+        </ul>
+        <div class="case-tab">
+        	<volist name='program_list' id="info">
+            <div class="case-con">
+                <div class="page-banner-three">
+                    <div class="main">
+                        <div class="three-left">
+                            <img src="/public/Uploads{$info.img}">
+                        </div>
+                        <div class="three-right">
+                            <h2>{$info.name}</h2>
+                            <div>{$info.content}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="main">
+                    <div class="jjian-left">
+                        <h2>行业借鉴</h2>
+                        <div>{$info.reference}</div>
+                    </div>
+                    <div class="jjian-right">
+                        <div class="jj-con">了解更多物流融资案例</div>
+                        <a href="/program/lists/id/{$info.id}" target="_blank">进入</a>
+                    </div>
+                </div>
+            </div>
+            </volist>
+        </div>
+    	
+    </div>
+<!--解决方案 end-->
+
+<!--产品中心 start-->
+
+    <div class="top" id="page4">
+        <include file="Common:top" />
+    </div>
+    <div class="page4">
+
+    	<include file="Common:shouye_ullist" />
+
+    	<div class="page-banner-four">
+        	<img src="/public/index/images/page4_01.png">
+        </div>
+        <ul class="product-nav">
+			<li>热销理财
+				<div class="product-con">{$product_list[1]}</div>
+			</li>
+			<li>限时抢购
+				<div class="product-con">{$product_list[2]}</div>
+			</li>
+			<li>固定收益
+				<div class="product-con">{$product_list[3]}</div>
+			</li>
+		</ul>
+        <div class="main">
+			<ul class="page4-icon">
+				<li><a href="{$product_list[4]}" target="_blank"><img src="/public/index/images/page4_02.png"></a></li>
+				<li><a href="{$product_list[5]}" target="_blank"><img src="/public/index/images/page4_03.png"></a></li>
+				<li><a href="{$product_list[6]}" target="_blank"><img src="/public/index/images/page4_04.png"></a></li>
+			</ul>
+		</div>
+    </div>
+<!--产品中心 start-->
+
+<!--风控体系 start-->
+
+    <div class="top" id="page8">
+       <include file="Common:top" />
+    </div>
+    <div class="page clearfix">
+
+    	<include file="Common:shouye_ullist" />
+
+    	<div class="jrkt">
+        	<h2><img src="/public/index/images/page7_01.png"></h2>
+        </div>
+        <div class="main">
+			<dl class="fengkong">
+            	<dt><img src="/public/index/images/page7_02.png"></dt>
+                <dd>
+                    <div>{$fengkong_list.content|mb_substr=0,200,'utf-8'}<?php if(mb_strlen($fengkong_list['content'],'utf-8')> 200) echo '. . . ';?></div>
+                    <div class="a-more tr"><a href="/fengkong/detail/id/{$fengkong_list.id}" target="_blank" >more</a></div>
+                    <p></p>
+                	<img src="/public/Uploads{$fengkong_list.img}">
+                </dd>
+            </dl>        
+        </div>
+    </div>
+<!--风控体系 end-->
+
+<!--走进鼎赫 start-->
+
+    <div class="top" id="page6">
+        <include file="Common:top" />
+    </div>
+    <div class="page clearfix">
+
+    	<include file="Common:shouye_ullist" />
+
+    	<div id="focus">
+          <div class="slideDiv">
+            <ul class="bigImg" >
+            	<volist name="dinghe_list" id="info">
+            		<li><a href="#"><img  src="/public/Uploads{$info.path}"></a></li>
+            	</volist>
+            </ul>
+            <ul class="imgNum">
+              <li class=""><a href="#">1</a></li>
+              <li class=""><a href="#">2</a></li>
+              <li ><a href="#">3</a></li>
+              <li class=""><a href="#">4</a></li>
+            </ul>
+          </div>
+        </div>
+        <ul class="contact-nav" id="contact-nav">
+        	<li>关于鼎赫</li>
+            <li>企业文化</li>
+            <li>愿景使命</li>
+            <li>组织架构</li>
+            <li>招聘信息</li>
+            <li>联系我们</li>
+        </ul>
+            <div class="contact-tab clearfix">
+    	<div class="contact-con clearfix">
+        	<div class="about-top">
+            	<div class="about-bottom">
+                	<div class="about-title">{$dinghe_res[1].title}</div>
+                    <div class="about-con">{$dinghe_res[1].content}</div>
+                </div>
+            </div>
+        </div>
+        <div class="contact-con clearfix">
+        	<div class="about-top">
+            	<div class="about-bottom">
+                	<div class="about-title">{$dinghe_res[2].title}</div>
+                    <div class="about-con">{$dinghe_res[2].content}</div> 
+                </div>
+            </div>
+        </div>
+        <div class="contact-con clearfix">
+        	<div class="about-top">
+            	<div class="about-bottom">
+                	<div class="about-title">{$dinghe_res[3].title}</div>
+                    <div class="about-con">{$dinghe_res[3].content}</div>
+                </div>
+            </div>
+        </div>
+        <div class="contact-con clearfix">
+        	<div class="about-top">
+            	<div class="about-bottom">
+                	<div class="about-title">{$dinghe_res[4].title}</div>
+                    <div class="about-con">{$dinghe_res[4].content}</div>
+                </div>
+            </div>
+        </div>
+        <div class="contact-con clearfix">
+        	<div class="about-top">
+            	<div class="about-bottom">
+                	<div class="about-title">{$dinghe_res[5].title}</div>
+                    <div class="about-con">
+                    	<div class="lanxi job">{$dinghe_res[5].content}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="contact-con clearfix">
+        	<div class="about-top">
+            	<div class="about-bottom">
+                	<div class="about-title">{$dinghe_res[6].title}</div>
+                    <div class="about-con">
+                    	<div class="lanxi">{$dinghe_res[6].content}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+<!--走进鼎赫 end-->
+
+<!--新闻动态 start-->    
+    <div class="top" id="page9">
+        <include file="Common:top" />
+    </div>
+    <div class="page4">
+
+		<include file="Common:shouye_ullist" />
+
+    	<div class="jrkt">
+        	<h2><a href="/news/lists"><img src="/public/index/images/page8_01.png"></a></h2>
+        </div>
+
+        <div class="news">
+        <volist name="news_list" id="info">
+    	<div class="news-list">
+            <div class="news-con">
+            	<div class="time">{$info.create_time|date='d.F Y',###}</div>
+                <dl class="clearfix">
+                    <dt>
+                        <a href="#"><img src="/public/Uploads{$info.img}"></a>
+                    </dt>
+                    <dd>
+                    	<h2><a href="#">{$info.title}</a></h2>
+                        <div>{$info.content|mb_substr=0,200,'utf-8'}
+                            <?php if(mb_strlen($info['content'],'utf-8')> 200) echo '...';?>
+                            </div>
+                        <div class="a-more"><a href="/news/detail/id/{$info.id}" target="_blank" >more</a></div>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        </volist>
+    </div>  
+    </div>
+<!--新闻动态 end--> 
+
+<!--金融课堂 start-->     
+    <div class="top" id="page7">
+        <include file="Common:top" />
+    </div>
+    <div class="page4">
+
+    	<include file="Common:shouye_ullist" />
+
+    	<div class="jrkt">
+        	<h2><img src="/public/index/images/page6_01.png"></h2>
+        </div>
+        <div class="partner_con clearfix" id="scroll2">
+        <div class="left_but scroll_up"></div>
+        <div class="scrollDiv">
+            <ul>
+                <volist name='financial_list' id="info">
+                <li>
+                    <div class="jr-con">
+                        <div class="time">{$info.create_time|date='d.F Y',###}</div>
+                        <div class="jr-img"><img src="/public/Uploads{$info.img}"></div>
+                        <div class="jr-text">
+                            <h4>{$info.title}</h4>
+                            <div>{$info.content|mb_substr=0,140,'utf-8'}</div>
+                           <div class="a-more"><a href="/financial/detail/id/{$info.id}" target="_blank" >more</a></div> 
+                        </div>
+                    </div>
+                </li>
+                </volist>
+            </ul>
+        </div>
+        <div class="right_but scroll_down"></div>
+    </div>
+    </div>
+<!--金融课堂 end-->    
+
+<!--下载中心 start-->     
+    <div class="top" id="page5">
+        <include file="Common:top" />
+    </div>
+    <div class="page4">
+    	
+    	<include file="Common:shouye_ullist" />
+
+    	<div class="tc download-icon"><img src="/public/index/images/page5_01.png"></div>
+    	<div class="download">
+    	<div class="partner_con clearfix" id="scroll1">
+        <div class="left_but scroll_up"></div>
+        <div class="scrollDiv">
+            <ul>
+                <volist name='downloadTable_list' id="info">
+                <li><a href="javascript:window.open('/public/Uploads{$info.table_link}');"><img src="/public/index/images/{$info.img_radio}"></a>
+                	<h3>{$info.name}</h3>
+                </li>
+                </volist>
+            </ul>
+        </div>
+        <div class="right_but scroll_down"></div>
+    </div>
+    </div>
+        <div style="height:50px;"></div>
+    </div>
+
+ <!--下载中心 end-->
+</body>
+</html>

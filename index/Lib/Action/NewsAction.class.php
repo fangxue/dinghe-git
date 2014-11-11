@@ -20,19 +20,19 @@ class NewsAction extends BaseAction {
 
 
 		if($id){
-			$classname = $classNameModel->where(array("id"=>$id))->getField("name");
+			$classname = $classNameModel->where(array("id"=>$id))->find();
 			$this->assign("id",$id);
 		}else{
-			$class = $classNameModel->where(array("pid"=>5))->order("create_time desc")->limit(1)->find();
-			$this->assign("id",$class["id"]);
-			$classname = $class["name"];
+			$classname = $classNameModel->where(array("pid"=>5))->order("create_time desc")->limit(1)->find();
+			$id = $classname["id"];
+			$this->assign("id",$classname["id"]);
 		}
 
 
-		$count = $newsModel->where(array("class"=>$classname))->order("create_time desc")->count();
-		$page = new Page($count,1);
+		$count = $newsModel->where(array("class"=>$id))->order("create_time desc")->count();
+		$page = new Page($count,10);
 
-		$list = $newsModel->where(array("class"=>$classname))->order("create_time desc")->limit($page->firstRow.','.$page->listRows)->select();
+		$list = $newsModel->where(array("class"=>$id))->order("create_time desc")->limit($page->firstRow.','.$page->listRows)->select();
 
 		$this->assign("classname",$classname);
 		$this->assign("leftlist",$leftlist);

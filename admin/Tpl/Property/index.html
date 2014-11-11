@@ -11,21 +11,29 @@
 	<script id="container" name="content" style="min-height:200px;" type="text/plain"></script>
 	</div>
 	<hr>
-	<a class="btn btn-primary" href="/admin.php/Property/addClass">增加分类</a>
 
+	<a class="btn btn-primary" href="/admin.php/Property/addClass">增加分类</a>
 	<table class="table table-hover folder-list" style="margin-top:10px">
 		<tbody>
 			<tr>
 				<th>分类名称</th>
+				<th>排序</th>
+				<th>模式</th>
 				<th>操作</th>
 			</tr>
 			<volist name='list' id="info">
 				<tr>   
 				<td>{$info.name}</td>
+				<td>{$info.sort}</td>
+				<td><if condition="$info['is_list'] eq 1">列表式<else/>阅读式</if></td>
 				<td>
 					<a class="btn btn-default btn-xs" href="/admin.php/Property/addClass/id/{$info.id}">编辑</a>
 					<a class="btn btn-default btn-xs" href="/admin.php/Property/del/id/{$info.id}">删除</a>
-					<a class="btn btn-default btn-xs" href="/admin.php/Property/articleManage/id/{$info.id}">管理文章</a>
+					<if condition="$info['is_list'] eq 1">
+						<a class="btn btn-default btn-xs" href="/admin.php/Property/articleManage/id/{$info.id}">管理文章</a>
+					<else/>
+						<a class="btn btn-default btn-xs" href="/admin.php/Property/readContent/id/{$info.id}">管理内容</a>
+					</if>
 				</td>
 
 				</tr>

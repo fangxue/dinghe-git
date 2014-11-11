@@ -1,0 +1,25 @@
+<div class="main clearfix">
+    <div class="logo">
+        <a href="/"><img src="/public/index/images/logo.png"></a>
+    </div>
+    <div class="top-right">
+            <ul>
+                <if condition="$user_info">
+                    <li class="a-login" style="color:#fff">
+                    欢迎您，{$user_info.name}
+                    </li>
+                    <li class="a-login">
+                    <a href="/public/logout">退出</a>
+                    </li>
+                <else/>
+                    <li class="a-login">
+                    <a href="/public/register">注册</a>
+                    </li>
+                    <li class="a-login">
+                    <a href="/public/login">登录</a>
+                    </li>
+                     <li><a class="backToTop" href="javascript:void(0)"><img src="/public/index/images/gotop_icon.png"></a></li>
+                </if>
+            </ul>
+    </div>
+</div>

@@ -6,20 +6,20 @@ class CommerceAction extends BaseAction {
 		$id = $this->getParam("get","id");
 		$classNameModel = M("className");
 		$articleModel = M("article");
-		$leftlist = $classNameModel->where(array("pid"=>1))->order("create_time desc")->select();
+		$leftlist = $classNameModel->where(array("pid"=>1))->order("sort desc")->select();
 		
 		if($id){
-			$classname = $classNameModel->where(array("id"=>$id))->getField("name");
+			$classname = $classNameModel->where(array("id"=>$id))->find();
 			$this->assign("id",$id);
 		}else{
-			$class = $classNameModel->where(array("pid"=>1))->order("create_time desc")->limit(1)->find();
-			$this->assign("id",$class["id"]);
-			$classname = $class["name"];
+			$classname = $classNameModel->where(array("pid"=>1))->order("sort desc")->limit(1)->find();
+			$id = $classname["id"];
+			$this->assign("id",$classname["id"]);
 		}
 
-		$count = $articleModel->where(array("class"=>$classname))->count();
+		$count = $articleModel->where(array("class"=>$id))->count();
 		$page = new Page($count,10);
-		$articleInfo = $articleModel->where(array("class"=>$classname))->order("create_time desc")->limit($page->firstRow.','.$page->listRows)->select();
+		$articleInfo = $articleModel->where(array("class"=>$id))->order("create_time desc")->limit($page->firstRow.','.$page->listRows)->select();
 		
 		$this->assign("list",$articleInfo);
 		

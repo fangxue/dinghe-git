@@ -4,17 +4,17 @@ class TreasureAction extends BaseAction {
 	public function index(){
 		$classNameModel = M("className");
 
-		$count = $classNameModel->where(array("pid"=>3))->order("create_time desc")->count();
+		$count = $classNameModel->where(array("pid"=>3))->order("sort desc")->count();
 		$page = new Page($count,10);
 
-		$list = $classNameModel->where(array("pid"=>3))->order("create_time desc")->limit($page->firstRow.','.$page->listRows)->select();
+		$list = $classNameModel->where(array("pid"=>3))->order("sort desc")->limit($page->firstRow.','.$page->listRows)->select();
 		
 		$articleModel = M("article");
 		$info = $articleModel->where(array("class"=>"财富中心"))->find();
 		$this->assign("info",$info);
 		
 		$this->assign("list",$list);
-		$this->displayPage($page);
+		$this->displayPage($page,"/admin.php");
 		$this->display();
 	}
 	//管理分类
@@ -26,13 +26,17 @@ class TreasureAction extends BaseAction {
 			$info["name"] = trim($data["name"]);
 			$info["pid"] = 3;
 			$info["update_time"] = time();
-
-			$res = $classNameModel->where(array("name"=>$info["name"],"pid"=>3))->find();
-			if($res){
-				$this->error('此分类名已存在,请重新填写！');
+			$info["sort"] = $data["sort"];
+			$info["is_list"] = $data["is_list"];
+			if($data["is_list"] == 1){
+				$info["read_content"] = "";
 			}
 
 			if($data["id"] == ''){
+				$res = $classNameModel->where(array("name"=>$info["name"],"pid"=>3))->find();
+				if($res){
+					$this->error('此分类名已存在,请重新填写！');
+				}
 				$info["create_time"] = time();
 				$result = $classNameModel->add($info);
 				if(is_numeric($result)){
@@ -84,28 +88,27 @@ class TreasureAction extends BaseAction {
 		$articeModel = M("article");
 		$class = $classNameModel->where(array("id"=>$id))->getField("name");
 
-		$count = $articeModel->where(array("class"=>$class))->order("create_time desc")->count();
+		$count = $articeModel->where(array("class"=>$id))->order("create_time desc")->count();
 		$page = new Page($count,10);
 		
-		$list = $articeModel->where(array("class"=>$class))->order("create_time desc")->limit($page->firstRow.','.$page->listRows)->select();
+		$list = $articeModel->where(array("class"=>$id))->order("create_time desc")->limit($page->firstRow.','.$page->listRows)->select();
 		$this->assign("list",$list);
 		$this->assign("classid",$id);
 		$this->assign("title",$class);
-		$this->displayPage($page);
+		$this->displayPage($page,"/admin.php");
 		$this->display();
 	}
 
 	//管理分类下的文章
 	public function addArticle(){
 		$articleModel = M("article");
-		$classNameModel = M("className");
 		if($this->getParam('post')){
-			$data = $this->getParam('post');
 
-			$class = $classNameModel->where(array("id"=>$data["classid"]))->getField("name");
+			$data = $this->getParam('post');
+			
 			$info["title"] = trim($data["title"]);
 			$info["content"] = stripslashes($data['content']);
-			$info["class"] = $class;
+			$info["class"] = $$data["classid"];
 			$info["update_time"] = time();
 			$info["img"] = '';
 			
@@ -177,5 +180,31 @@ class TreasureAction extends BaseAction {
 			$articleModel->where(array("class"=>"财富中心"))->save($info);
 		}
 		echo json_encode(array('str' =>$info["content"]));exit; 
+	}
+
+	//阅读模式--管理主内容
+	public function readContent(){
+		$classNameModel = M("className");
+		if($this->getParam('post')){
+			$data = $this->getParam('post');
+
+			$info["read_content"] = stripslashes($data['content']);
+			$info["update_time"] = time();
+
+			$result = $classNameModel->where(array("id"=>$data['id']))->save($info);
+			if(is_numeric($result)){
+				$this->success('修改成功','/admin.php/Treasure/index');
+			}
+
+		}else{
+			$id = $this->getParam('get','id');
+			$list = $classNameModel->where(array("id"=>$id))->find();
+			if($list["is_list"] == 1){
+				$this->error('当前二级分类不是阅读模式！');
+			}
+			$this->assign("list",$list);
+			$this->assign("id",$id);
+			$this->display();
+		}
 	}
 }

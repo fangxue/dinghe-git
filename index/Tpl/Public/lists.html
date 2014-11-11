@@ -13,8 +13,10 @@
         </div>
          <div class="d-right">
           <div class="new-title">
-              {$classname}
+              {$classname.name}
           </div>
+
+          <if condition="$classname['is_list'] eq 1">
             <div class="newlist">
               <ul>
                 <volist name='list' id="info">
@@ -24,8 +26,13 @@
                 <div class="pagepaper">
                     {$page}
                 </div>
-                
             </div>
+          <else/>
+              <div class="detail-con">
+              {$classname.read_content}
+              </div>
+          </if>
+
         </div>
 </div>          
 <include file="Common:footer" />

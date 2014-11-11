@@ -119,8 +119,8 @@ class BaseAction extends Action {
 	 * 公用的分页格式
 	 * @param Object $page
 	 */
-	protected function displayPage($page){
-		$show = $page->show();// 分页显示输出
+	protected function displayPage($page,$pre){
+		$show = $page->show($pre);// 分页显示输出
 		$this->assign('page',$show);// 赋值分页输出
 	}
 
