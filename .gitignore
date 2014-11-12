@@ -3,6 +3,7 @@
 #################
 /admin/Runtime/
 /index/Runtime/
+/public/Uploads/
 *.pydevproject
 .project
 .metadata
