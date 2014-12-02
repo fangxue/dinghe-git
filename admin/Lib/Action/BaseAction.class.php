@@ -127,7 +127,7 @@ class BaseAction extends Action {
 	/**
 	*上传图片
 	*/
-	function _upload($file,$uploadurl,$url){
+	function _upload($file,$uploadurl,$url,$grey=null){
 		$name = explode('.', $file["name"]);
 		$fileName = md5($name[0]);
 		import('@.ORG.UploadFile');
@@ -143,8 +143,13 @@ class BaseAction extends Action {
 		$upload->thumb              = true;
 		// 设置引用图片类库包路径
 		$upload->imageClassPath     = '@.ORG.Image';
-		//设置需要生成缩略图的文件前缀
-		$upload->thumbPrefix        = 'm_';  //生产2张缩略图
+		if($grey == "FiledataGrey"){
+			//设置需要生成缩略图的文件前缀
+			$upload->thumbPrefix        = 'grey_';  //生产2张缩略图
+		}else{
+			//设置需要生成缩略图的文件前缀
+			$upload->thumbPrefix        = 'm_';  //生产2张缩略图
+		}
 		//设置生成缩略图的文件后缀
 		$upload->thunbSuffix        = 'jpg';
 		//设置缩略图最大宽度
@@ -152,22 +157,32 @@ class BaseAction extends Action {
 		//设置缩略图最大高度
 		$upload->thumbMaxHeight     = '400,35,1000';
 		//设置上传文件规则
-		$upload->saveRule           = 'uniqid';
+		// $upload->saveRule           = 'uniqid';
 		//删除原图
 		$upload->thumbRemoveOrigin  = true;
 	
 		$upload->thumbFile  = "$fileName";
+		print_r($upload);
+
+		
+
 		if(!is_dir($upload->savePath)){
 			mkdir($upload->savePath,0777);
 
 		}
-		if (!$upload->upload()) {
-			//捕获上传异常
-			$this->error($upload->getErrorMsg());
-		} else {
-			$uploadList = $upload->getUploadFileInfo();		
-			return $url."m_".$uploadList[0]['savename'];
-		}
+		$upload->upload();
+		// if (!$upload->upload()) {
+		// 	//捕获上传异常
+		// 	$this->error($upload->getErrorMsg());
+		// } else {
+		// 	$uploadList = $upload->getUploadFileInfo();
+		// 	// var_dump($uploadList);
+		// 	if($grey){
+		// 		return $url."grey_".$uploadList[0]['savename'];
+		// 	}else{
+		// 		return $url."m_".$uploadList[0]['savename'];
+		// 	}
+		// }
 	
 	}
 
